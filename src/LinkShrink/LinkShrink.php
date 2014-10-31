@@ -37,7 +37,7 @@ class LinkShrink
      */
     public function shorten($url)
     {
-        return $this->getProvider()->getShortenedLink($url);
+        return $this->getProvider()->getShortenedUrl($url);
     }
 
     /**
@@ -49,7 +49,7 @@ class LinkShrink
      */
     public function expand($url)
     {
-        return $this->getProvider()->getExpandedLink($url);
+        return $this->getProvider()->getExpandedUrl($url);
     }
 
     /**
