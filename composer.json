@@ -1,0 +1,31 @@
+{
+  "name": "devmatt/link-shrink",
+  "type": "library",
+  "description": "URL shortener library",
+  "keywords": [
+    "url shortener",
+    "abstraction"
+  ],
+  "homepage": "https://github.com/devmatt/link-shrink",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matthew Nessworthy",
+      "email": "matthew@devmatt.co.za"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "egeloen/http-adapter": "~0.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "LinkShrink": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1.x-dev"
+    }
+  }
+}
