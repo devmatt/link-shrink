@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * Link Shrink
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE file
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @author Matthew Nessworthy <matthew@devmatt.co.za>
+ * @copyright Copyright (c) Matthew Nessworthy
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link https://github.com/devmatt/link-shrink
+ */
 namespace LinkShrink\Provider;
 
 use Ivory\HttpAdapter\HttpAdapterInterface;
@@ -38,15 +49,16 @@ class Google extends AbstractProvider implements Provider
         $this->apiKey = $apiKey;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getName()
     {
         return 'google';
     }
 
     /**
-     * @param $url
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function getShortenedUrl($url)
     {
@@ -57,9 +69,7 @@ class Google extends AbstractProvider implements Provider
     }
 
     /**
-     * @param $url
-     *
-     * @return mixed
+     * @inheritdoc
      */
     public function getExpandedUrl($url)
     {
@@ -68,6 +78,9 @@ class Google extends AbstractProvider implements Provider
         return $this->executeExpandUrlQuery($apiUrl);
     }
 
+    /**
+     * @return string
+     */
     protected function buildShortenUrl()
     {
         $url = static::SHORTEN_ENDPOINT_URL;
@@ -79,7 +92,7 @@ class Google extends AbstractProvider implements Provider
     }
 
     /**
-     * @param $url
+     * @param string $url
      *
      * @return string
      */
@@ -92,7 +105,13 @@ class Google extends AbstractProvider implements Provider
         return json_encode($parameters);
     }
 
-    protected function executeShortenUrlQuery($query, $parameters)
+    /**
+     * @param string $query
+     * @param array|string $parameters
+     *
+     * @return string
+     */
+    protected function executeShortenUrlQuery($query, $parameters = array())
     {
         $content = (string) $this->getAdapter()->post($query, array('Content-Type: application/json'),
             $parameters)->getBody();
@@ -113,7 +132,7 @@ class Google extends AbstractProvider implements Provider
     }
 
     /**
-     * @param $url
+     * @param string$url
      *
      * @return string
      */
@@ -129,6 +148,11 @@ class Google extends AbstractProvider implements Provider
         return static::EXPAND_ENDPOINT_URL . '?' . http_build_query($parameters);
     }
 
+    /**
+     * @param string $query
+     *
+     * @return string
+     */
     protected function executeExpandUrlQuery($query)
     {
         $content = (string) $this->getAdapter()->get($query)->getBody();
